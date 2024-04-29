@@ -44,6 +44,10 @@ int main(int argc, char* argv[])
             return 1;
         }
     }
+    else
+    {
+	    print_help();
+    }
 
     return 0;
 }
