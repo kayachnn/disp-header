@@ -117,7 +117,7 @@ typedef enum {
     EM_RISCV        = 243
     // Add more as needed
 } EM_MACHINE;
-
+#pragma pack(pop)
 
 void print_common_32_64
 (
@@ -150,5 +150,5 @@ void print_header_information_64
     enum EI_OSABI os_abi
 );
 
-#pragma pack(pop)
+void print_elf_header(char* filename);
 #endif

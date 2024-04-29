@@ -1,5 +1,6 @@
 #include "../include/helper_functions.h"
 #include <stdint.h>
+#include <stdio.h>
 #include <stdlib.h>
 
 // Function to swap the byte order of a 16-bit integer
@@ -43,4 +44,12 @@ void fread_uint64_t(uint64_t* val_ptr, FILE* fp)
         fclose(fp);
         exit(EXIT_FAILURE);
     }
+}
+
+void print_help()
+{
+    fprintf(stdout, "Usage: ./disp-header [options] <elf-file>\n");
+    fprintf(stdout, "Options:\n");
+    fprintf(stdout, " -h: print file header \n");
+    fprintf(stdout, " -help: print help message\n");
 }

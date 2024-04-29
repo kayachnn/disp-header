@@ -6,18 +6,51 @@
 #include "../include/elf_header.h"
 #include "../include/helper_functions.h"
 
+void print_elf_header(char* filename);
+
 // 0x7f E L F
 const uint8_t elf_header_magic_nr[4] = {0x7f, 'E', 'L', 'F'};
 
 int main(int argc, char* argv[])
 {
-    if (argc != 2)
+    int opt;
+    char* filename = NULL;
+    int print_header = 0;
+    while ((opt = getopt(argc, argv, "h")) != -1)
     {
-        fprintf(stderr, "Usage: ./disp-header <OPTIONS> <filename>\n");
-        exit(EXIT_FAILURE);
+        switch(opt)
+        {
+            case 'h':
+            {
+                print_header = 1;
+                break;
+            }
+            default:
+                print_help();
+                return 1;
+        }
     }
 
-    FILE* fp = fopen(argv[1], "rb");
+    if (print_header)
+    {
+        if (optind < argc)
+        {
+            filename = argv[optind];
+            print_elf_header(filename);
+        }
+        else 
+        {
+            print_help();
+            return 1;
+        }
+    }
+
+    return 0;
+}
+
+void print_elf_header(char *filename)
+{
+    FILE* fp = fopen(filename, "rb");
     if (fp == NULL)
     {
         fprintf(stderr, "Error while opening file\n");
@@ -168,6 +201,4 @@ int main(int argc, char* argv[])
     }
     
     fclose(fp);
-
-    return 0;
 }

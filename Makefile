@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -Wall -Wextra -std=c11
+CFLAGS = -Wall -Wextra
 LDFLAGS = 
 INCLUDE_DIR = include 
 
